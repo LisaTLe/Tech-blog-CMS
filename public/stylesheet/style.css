@@ -1,0 +1,18 @@
+:root {
+  --light-green: #acad94;
+  --dark-green: #384d48;
+  --nickel: #6e7271;
+  --light-gray: #d8d4d5;
+  --platinum: #e2e2e2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  font-size: 15px;
+}
