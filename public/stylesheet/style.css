@@ -10,9 +10,153 @@
   box-sizing: border-box;
 }
 
-body {
+body,
+html {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  color: var(--light-green);
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--dark-green);
+}
+
+a:hover {
+  color: var(--nickel);
+}
+
+.app-title {
+  font-size: 3rem;
+  background-color: var(--light-green);
+  color: var(--dark-green);
+  padding: 0 10px;
+  display: inline-block;
+  border-radius: var(--nickel);
+  box-shadow: 6px 5px var(--light-gray);
+}
+
+.btn {
+  border: 0;
+  padding: 1%;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.hero {
+  padding: 3% 4%;
+  background-color: var(--dark-green);
+  color: var(--light-green);
+}
+
+.hero p {
+  max-width: 75%;
+}
+
+.post-list {
   margin: 0;
   padding: 0;
-  line-height: 1.5;
-  font-size: 15px;
+}
+
+form-input {
+  width: 100%;
+  padding: 3%;
+  border-radius: 5px;
+  border: 1px solid var(--nickel);
+}
+
+form-label {
+  display: block;
+  font-size: 1.1rem;
+}
+
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  border-bottom: 1px solid var(--platinum);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1%;
+}
+
+main {
+  flex: 1;
+  padding: 2% 4%;
+}
+
+.btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--light-gray);
+  font-size: 100%;
+  font-weight: bold;
+  transition: color 0.1s;
+  margin-left: 16px;
+}
+
+.btn:hover {
+  background: none;
+  color: var(--nickel);
+}
+
+.btn-inline {
+  display: inline;
+}
+
+.delete-post-btn {
+  background-color: red;
+}
+
+.delete-post-btn:hover {
+  background-color: yellow;
+}
+
+.post {
+  margin-bottom: 2%;
+  line-height: 150%;
+}
+
+.post .title span {
+  font-style: italic;
+  font-size: 90%;
+  color: var(--dark-green);
+}
+
+.comment-form {
+  margin-bottom: 5%;
+}
+
+footer {
+  border-top: 1px solid --light-gray;
+  display: flex;
+  justify-content: center;
+  padding: 1%;
+  font-size: 110%;
+}
+
+.card {
+  margin-bottom: 1em;
+  margin-top: 1em;
+  border: 2px solid var(--light-gray);
+  border-radius: var(--nickel);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
 }
