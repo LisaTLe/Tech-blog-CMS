@@ -40,7 +40,9 @@
     </footer>
 
     {{#if loggedIn}}
-      <script src="/js/logout.js"></script>
+      <a href="/views/homepage.handlebars"></a>
+    {{else}}
+      <a href="/views/login.handlebars"></a>
     {{/if}}
 
   </body>
