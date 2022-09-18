@@ -41,4 +41,8 @@
   </form>
 </div>
 
-<script src="/js/login.js"></script>
+{{#if loggedIn}}
+  <a href="/views/create.handlebars"></a>
+{{/if}}
+
+<script src="/public/js/login.js"></script>
