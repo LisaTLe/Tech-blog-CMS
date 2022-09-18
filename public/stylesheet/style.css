@@ -33,6 +33,12 @@ html {
   background-color: var(--dark-green);
 }
 
+title {
+  color: var(--platinum);
+  font-weight: 300;
+  font-size: large;
+}
+
 a {
   text-decoration: none;
   font-weight: bold;
@@ -151,6 +157,21 @@ main {
 
 .li-inline {
   display: inline;
+}
+
+.login-form-box,
+.signup-form-box {
+  display: flexbox;
+  align-content: center;
+  border-style: inset;
+  width: 50%;
+  margin-left: 25%;
+  padding: 40px;
+  padding-right: 30px;
+  margin-top: 30px;
+  margin-bottom: 5%;
+  background-color: white;
+  border-radius: 8px;
 }
 
 .delete-post-btn {
