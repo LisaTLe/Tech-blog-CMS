@@ -10,21 +10,22 @@
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"
     />
     <link rel="stylesheet" href="/stylesheet/style.css" />
+    <title> A Tech Blog</title>
   </head>
 
   <body class="flex-column">
-    <h1 class="has-text-weight-bold px-4 py-4">A Tech Blog</h1>
+    <h3 class="has-text-weight-bold px-4 py-4">A Tech Blog</h3>
     <nav class="navbar">
-      {{#if loggedIn}}
-        <ul>
-          <li class="li-inline nav-item"><a href="/"> Home</a></li>
-          <li class="li-inline nav-item"><a href="/dashboard">
-              Dashboard</a></li>
-          <li class="li-inline nav-item"><a href="/login"> Login</a></li>
-          <li class="li-inline nav-item"><a href="#" id="logout-link">
-              Logout</a></li>
-        </ul>
-      {{/if}}
+      {{!-- {{#if loggedIn}} --}}
+      <ul>
+        <li class="li-inline nav-item"><a href="/"> Home</a></li>
+        <li class="li-inline nav-item"><a href="/dashboard">
+            Dashboard</a></li>
+        <li class="li-inline nav-item"><a href="/login"> Login</a></li>
+        <li class="li-inline nav-item"><a href="#" id="logout-link">
+            Logout</a></li>
+      </ul>
+      {{!-- {{/if}} --}}
     </nav>
 
     {{#if loggedIn}}
