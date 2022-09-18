@@ -46,7 +46,7 @@ router.get("/login", (req, res) => {
     res.redirect("/");
     return;
   }
-  res.render("login");
+  res.render("homepage");
 });
 
 //GET request for signup
@@ -55,7 +55,7 @@ router.get("/signup", (req, res) => {
     res.redirect("/");
     return;
   }
-  res.render("signup");
+  res.render("login");
 });
 
 module.exports = router;
