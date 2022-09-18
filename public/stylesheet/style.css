@@ -151,6 +151,7 @@ main {
 
 .nav-item {
   margin: 0 45px;
+  color: var(--platinum);
 }
 
 .nav-item a {
