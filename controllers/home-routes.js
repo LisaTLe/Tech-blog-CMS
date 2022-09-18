@@ -43,19 +43,19 @@ router.get("/", (req, res) => {
 //GET request for login
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect("/");
+    res.redirect("/dashboard");
     return;
   }
-  res.render("homepage");
+  res.render("login");
 });
 
 //GET request for signup
 router.get("/signup", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect("/");
+    res.redirect("/login");
     return;
   }
-  res.render("login");
+  res.render("signup");
 });
 
 module.exports = router;
