@@ -18,11 +18,11 @@ router.get("/", (req, res) => {
   //     console.log(err);
   //     res.status(500).json(err);
   //   });
-  res.render("signup, login");
+  res.render("signup");
 });
 
 router.get("/dashboard", (req, res) => {
-  res.render("homepage");
+  res.render("create");
 });
 
 //GET request for all posts
