@@ -37,6 +37,7 @@ title {
   color: var(--platinum);
   font-weight: 300;
   font-size: large;
+  align-content: center;
 }
 
 a {
