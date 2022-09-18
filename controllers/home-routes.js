@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
   res.render("login");
 });
 
-router.get("/profile", (req, res) => {
+router.get("/dashboard", (req, res) => {
   res.render("homepage");
 });
 
