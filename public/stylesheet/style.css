@@ -135,6 +135,15 @@ main {
   width: 100%;
   position: fixed;
   background-color: var(--light-green);
+  color: var(--light-gray);
+}
+
+.nav-item {
+  margin: 0 45px;
+}
+
+.nav-item a {
+  color: var(--dark-green);
 }
 
 .delete-post-btn {
