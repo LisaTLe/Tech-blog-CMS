@@ -119,6 +119,12 @@ main {
   display: inline;
 }
 
+.navbar {
+  width: 100%;
+  position: fixed;
+  background-color: var(--light-green);
+}
+
 .delete-post-btn {
   background-color: red;
 }
