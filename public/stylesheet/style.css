@@ -142,10 +142,10 @@ main {
   width: 100%;
   position: fixed;
   height: 5px;
-  background-color: var(--light-green);
-  color: var(--platinum);
+  background-color: var(--light-gray);
+  color: var(--dark-green);
   opacity: 30%;
-  align-items: right;
+  justify-content: right;
 }
 
 .nav-item {
