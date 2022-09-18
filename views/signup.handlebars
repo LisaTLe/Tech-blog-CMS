@@ -1,31 +1,40 @@
-<div class="column">
-  <h3 class="card-header">Sign Up Now!</h3>
-  <form class="card-body" id="signup-form">
-    <div>
-      <label class="form-label" for="email-signup"> Email: </label>
-      <input class="form-input" id="email-signup" type="text" />
+<h3 id="signup-text">Create a Profile Below:</h3>
+<div class="signup-form-box">
+  <form class="form-horizontal">
+      <div class="form-group">
+        <label for="inputUsername" class="column is-one-fifth control-label">Username</label>
+        <div class="column is-one-fifth">
+          <input type="input" class="form-control" id="username-signup" placeholder="Create username">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputEmail" class="column is-one-fifth control-label"> Email</label>
+        <div class="column is-one-fifth">
+          <input type="input" class="form-control" id="email-signup" placeholder="Enter email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputgithub" class="column is-one-fifth control-label">Github</label>
+        <div class="column is-one-fifth">
+          <input type="input" class="form-control" id="github-signup" placeholder="Enter Github ID">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword" class="column is-one-fifth control-label">Password</label>
+        <div class="column is-one-fifth">
+          <input type="password" class="form-control" id="password-signup" placeholder="Create password">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="column is-half">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="column is-half">
+          <button type="submit" class="btn btn-default">Sign up</button>
+        </div>
+      </div>
     </div>
-
-    <div>
-      <label class="form-label" for="username-signup"> Username: </label>
-      <input class="form-input" id="username-signup" type="text" />
-    </div>
-
-    <div>
-      <label class="form-label" for="password-signup"> Password: </label>
-      <input class="form-input" id="password-signup" type="text" />
-    </div>
-
-    <div>
-      <label class="form-label" for="github-signup"> Github: </label>
-      <input class="form-input" id="github-signup" type="text" />
-    </div>
-
-    <div>
-      <button class="button is-primary" type="submit">Sign Up</button>
-    </div>
-
-  </form>
-</div>
+    </form> 
 
 <script src="/js/signup.js"></script>
