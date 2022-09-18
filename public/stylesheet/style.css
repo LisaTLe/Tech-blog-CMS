@@ -17,7 +17,7 @@ h4,
 h5,
 h6 {
   font-weight: 700;
-  margin: 10%;
+  margin: 2%;
   color: var(--nickel);
   line-height: 1.25;
   text-align: center;
@@ -154,6 +154,10 @@ main {
 }
 
 .nav-item a {
+  color: var(--platinum);
+}
+
+.li {
   color: var(--platinum);
 }
 
