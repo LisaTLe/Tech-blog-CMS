@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
     .then((dbPostData) => {
       const post = dbPostData.map((post) => post.get({ plain: true }));
       res.render("homepage", {
-        post
+        post,
       });
     })
     .catch((err) => {
@@ -32,7 +32,7 @@ router.get("/login", (req, res) => {
 //GET request for signup
 router.get("/signup", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect("/");
+    res.redirect("/login");
     return;
   }
   res.render("signup");
