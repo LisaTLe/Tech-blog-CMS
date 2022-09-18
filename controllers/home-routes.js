@@ -25,29 +25,19 @@ router.get("/dashboard", (req, res) => {
   res.render("homepage");
 });
 
-router.get("/", async (req, res) => {
-  try {
-    // Get all projects and JOIN with user data
-    const userData = await Post.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ["name"],
-        },
-      ],
+//GET request for all posts
+router.get("/", (req, res) => {
+  Post.findAll({
+    include: [User],
+  })
+    .then((dbPostData) => {
+      const post = dbPostData.map((post) => post.get({ plain: true }));
+      res.render("all posts", { post });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
     });
-
-    // Serialize data so the template can read it
-    const users = userData.map((user) => user.get({ plain: true }));
-
-    // Pass serialized data and session flag into template
-    res.render("login", {
-      users,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
 });
 
 //GET request for login

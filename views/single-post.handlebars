@@ -1,7 +1,13 @@
+<header>
+    <div class="post">
+      <h2> Tech Blog Posts </h2>
+    </div>
+  </header>
+
 {{>post-info post}}
 
 {{!-- display comments --}}
-{{#if loggedIn}}
+{{!-- {{#if loggedIn}} --}}
 <form class="comment-form">
 <div>
     <textarea class="ml-5" name="comment-body"></textarea>
@@ -12,10 +18,10 @@
 </div>
 
 </form>
-{{/if}}
+{{!-- {{/if}} --}}
 
 {{>comments post.comments}}
 
-{{#if loggedIn}}
+{{!-- {{#if loggedIn}} --}}
 <script src="/js/comment.js"></script>
-{{/if}}
+{{!-- {{/if}} --}}
