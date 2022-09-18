@@ -143,8 +143,8 @@ main {
   position: fixed;
   height: 5px;
   background-color: var(--light-gray);
-  color: var(--dark-green);
-  opacity: 30%;
+  color: var(--platinum);
+  opacity: 100%;
   justify-content: right;
 }
 
