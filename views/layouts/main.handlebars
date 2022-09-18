@@ -31,6 +31,12 @@
       {{/if}}
     </nav>
 
+    {{#if loggedIn}}
+      <a href="/views/homepage.handlebars"></a>
+    {{else}}
+      <a href="/views/login.handlebars"></a>
+    {{/if}}
+
     <main>
       {{{body}}}
     </main>
@@ -38,12 +44,6 @@
     <footer class="flex-row justify-center">
       &copy; Tech Blog
     </footer>
-
-    {{#if loggedIn}}
-      <a href="/views/homepage.handlebars"></a>
-    {{else}}
-      <a href="/views/login.handlebars"></a>
-    {{/if}}
 
   </body>
 
