@@ -135,7 +135,7 @@ main {
 .navbar {
   width: 100%;
   position: fixed;
-  height: 10px;
+  height: 5px;
   background-color: var(--light-green);
   color: var(--light-gray);
   opacity: 30%;
@@ -189,6 +189,13 @@ footer {
   margin-top: 1em;
   border: 2px solid var(--light-gray);
   border-radius: var(--nickel);
+}
+
+.card-header {
+  color: var(--dark-green);
+  background-color: var(--light-green);
+  padding: 1%;
+  border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
 }
 
 .rows {
