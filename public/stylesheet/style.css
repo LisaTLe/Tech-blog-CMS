@@ -122,7 +122,7 @@ main {
   padding: 0;
   cursor: pointer;
   text-decoration: none;
-  color: var(--light-gray);
+  color: var(--nickel);
   font-size: 100%;
   font-weight: bold;
   transition: color 0.1s;
@@ -171,7 +171,7 @@ main {
   padding-right: 30px;
   margin-top: 30px;
   margin-bottom: 5%;
-  background-color: white;
+  background-color: var(--light-green);
   border-radius: 8px;
 }
 
