@@ -18,7 +18,7 @@ router.get("/", (req, res) => {
   //     console.log(err);
   //     res.status(500).json(err);
   //   });
-  res.render("create");
+  res.render("signup, login");
 });
 
 router.get("/dashboard", (req, res) => {
