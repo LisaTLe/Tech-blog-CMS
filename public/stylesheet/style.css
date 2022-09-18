@@ -20,7 +20,7 @@ h6 {
   margin: 2%;
   color: var(--nickel);
   line-height: 1.25;
-  text-align: center;
+  align-content: center;
 }
 
 body,
