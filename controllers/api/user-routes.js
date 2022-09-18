@@ -50,52 +50,97 @@ router.get("/:id", (req, res) => {
 });
 
 //POST request to create new user
-router.post("/", (req, res) => {
-  User.create({
-    username: req.body.username,
-    password: req.body.password,
-    email: req.body.email,
-    github: req.body.github,
-  }).then((dbUserData) => {
-    req.session.save(() => {
-      req.session.user_id = dbUserData.id;
-      req.session.username = dbUserData.username;
-      req.session.github = dbUserData.github;
-      req.session.loggedIn = true;
-
-      res.json(dbUserData);
+router.post("/", async (req, res) => {
+  try {
+    const userData = await User.create({
+      username: req.body.username,
+      password: req.body.password,
+      email: req.body.email,
+      github: req.body.github,
     });
-  });
+
+    req.session.save(() => {
+      req.session.logged_in = true;
+
+      res.status(200).json(userData);
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
+// .then((dbUserData) => {
+//   req.session.save(() => {
+//     req.session.user_id = dbUserData.id;
+//     req.session.username = dbUserData.username;
+//     req.session.github = dbUserData.github;
+//     req.session.loggedIn = true;
+
+//     res.json(dbUserData);
+//   });
+// });
+// });
 
 //POST request to login
-router.post("/login", (req, res) => {
-  User.findOne({
-    where: {
-      username: req.body.username,
-    },
-  }).then((dbUserData) => {
-    if (!dbUserData) {
+router.post("/login", async (req, res) => {
+  try {
+    const userData = await User.findOne({
+      where: { username: req.body.username },
+    });
+    if (!userData) {
       res
-        .status(400)
-        .json({ messgae: "There is no user on file with that username" });
+        .status(404)
+        .json({ message: "Error, Incorrect username or password entered" });
+      return;
     }
-    const validPassword = dbUserData.checkPassword(req.body.password);
-
-    if (!validPassword) {
-      res.status(400).json({ message: "Incorrect password. Try again!" });
+    const correctPw = await bcrypt.compare(
+      req.body.password,
+      userData.password
+    );
+    if (!correctPw) {
+      res
+        .status(404)
+        .json({ message: "Error, Incorrect username or password entered" });
       return;
     }
     req.session.save(() => {
-      req.session.user_id = dbUserData.id;
-      req.session.username = dbUserData.username;
-      req.session.github = dbUserData.github;
-      req.session.loggedIn = true;
+      // req.session.user_id = userData.id;
+      req.session.logged_in = true;
+      req.session.cookie;
 
-      res.json({ user: dbUserData, message: "You are now logged in" });
+      res
+        .status(200)
+        .json({ user: userData, message: "You are now logged in" });
+
+      // res.render("homepage");
     });
-  });
+  } catch (err) {
+    console.log(err);
+    res.status(404).json(err);
+  }
 });
+//   }).then((dbUserData) => {
+//     if (!dbUserData) {
+//       res
+//         .status(400)
+//         .json({ messgae: "There is no user on file with that username" });
+//     }
+//     const validPassword = dbUserData.checkPassword(req.body.password);
+
+//     if (!validPassword) {
+//       res.status(400).json({ message: "Incorrect password. Try again!" });
+//       return;
+//     }
+//     req.session.save(() => {
+//       req.session.user_id = dbUserData.id;
+//       req.session.username = dbUserData.username;
+//       req.session.github = dbUserData.github;
+//       req.session.loggedIn = true;
+
+//       res.json({ user: dbUserData, message: "You are now logged in" });
+//     });
+//   });
+// });
 
 //POST request for user logout
 router.post("/logout", (req, res) => {
