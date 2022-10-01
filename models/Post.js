@@ -17,18 +17,20 @@ Post.init(
     },
     post_content: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: false,
     },
     user_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
-        model: "user",
+        model: "User",
         key: "id",
       },
     },
   },
   {
     sequelize,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
     modelName: "Post",
