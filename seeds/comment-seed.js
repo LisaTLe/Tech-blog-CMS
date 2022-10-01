@@ -8,8 +8,13 @@ const commentData = [
   },
   {
     user_id: 2,
-    post_id: 5,
+    post_id: 2,
     comment_text: "Useful tool!",
+  },
+  {
+    user_id: 3,
+    post_id: 1,
+    comment_text: "test",
   },
 ];
 
