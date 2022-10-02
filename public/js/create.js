@@ -1,28 +1,23 @@
 const newFormHandler = async (event) => {
   event.preventDefault();
 
-  const title = document.querySelector("input[name = 'post-title']").value;
-  const post_content = document.querySelector(
-    "input[name = 'post_content']"
-  ).value;
+  const title = document.querySelector("#title-field").value.trim();
+  const post_content = document.querySelector("#content-field").value.trim();
 
-  const response = await fetch(`/api/posts`, {
+  if (!(title && post_content)) {
+    alert("Please fill out all requried fields");
+    return;
+  }
+  await fetch("/api/post", {
     method: "POST",
     body: JSON.stringify({
       title,
       post_content,
     }),
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application.json" },
   });
-  if (response.ok) {
-    document.location.replace("/dashboard");
-  } else {
-    alert(response.statusText);
-  }
+
+  document.location.replace("/dashboard");
 };
 
-document
-  .querySelector(".new-post-form")
-  .addEventListener("submit", newFormHandler);
+document.querySelector("#submit-btn").addEventListener("clcik", newFormHandler);
