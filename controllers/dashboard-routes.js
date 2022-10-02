@@ -4,106 +4,82 @@ const { Post, User, Comment } = require("../models");
 const withAuth = require("../utils/auth");
 
 //GET request for all posts
-router.get("/", withAuth, (req, res) => {
-  Post.findAll({
-    where: {
-      user_id: req.session.user_id,
-    },
-    // attributes: ["id", "title", "post_content", "created_at"],
-    // include: [
-    //   {
-    //     model: Comment,
-    //     attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
-    //     include: {
-    //       model: User,
-    //       attributes: ["username", "github"],
-    //     },
-    //   },
-    //   {
-    //     model: User,
-    //     attributes: ["username", "github"],
-    //   },
-    // ],
-  })
-    .then((dbPostData) => {
-      const posts = dbPostData.map((post) => post.get({ plain: true }));
-      res.render("all posts", { layout: "dashboard", posts });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
+router.get("/", withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findAll({
+      attributes: { exclude: ["updatedAt", "user_id"] },
+      include: [
+        { model: User, attributes: { exclude: ["updatedAt", "password"] } },
+        { model: Comment },
+      ],
+      where: {
+        user_id: req.session.userId,
+      },
     });
+    const posts = postData.map((post) => post.get({ plain: true }));
+
+    res.render("all-posts-admin", {
+      layout: "dashboard",
+      payload: { posts, session: req.session },
+    });
+  } catch (err) {
+    console.log(err);
+    res.redirect("login");
+  }
 });
 
 //GET request for one post
-router.get("/edit/:id", withAuth, (req, res) => {
-  Post.findOne({
-    where: {
-      id: req.params.id,
-    },
-    attributes: ["id", "title", "post_content", "created_at"],
-    include: [
-      {
-        model: Comment,
-        attributes: ["id", "user_id", "post_id", "comment_text", "created_at"],
-        include: {
-          model: User,
-          attributes: ["username", "github"],
-        },
-      },
-      {
-        model: User,
-        attributes: ["username", "github"],
-      },
-    ],
-  })
-    .then((dbPostData) => {
-      if (!dbPostData) {
-        res.status(404).json({ message: "Post cannot be found with this ID" });
-        return;
-      }
-      const post = dbPostData.get({ plain: true });
+router.get("/edit/:id", withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id);
+
+    if (postData) {
+      const post = postData.get({ plain: true });
+
       res.render("edit-post", {
-        post,
-        loggedIn: true,
+        layout: "dashboard",
+        payload: { posts: post, session: req.session },
       });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+    } else {
+      res.status(404).end();
+    }
+  } catch (err) {
+    console.log(err);
+    res.redirect("login");
+  }
 });
 
 //GET request to create new post
 router.get("/create", withAuth, (req, res) => {
-  Post.findAll({
-    where: {
-      user_id: req.session.user_id,
-    },
-    attributes: ["id", "title", "post_content", "created_at"],
-    include: [
-      {
-        model: Comment,
-        attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
-        include: {
-          model: User,
-          attributes: ["username", "github"],
-        },
-      },
-      {
-        model: User,
-        attributes: ["username", "github"],
-      },
-    ],
-  })
-    .then((dbPostData) => {
-      const post = dbPostData.map((post) => post.get({ plain: true }));
-      res.render("create-post", { post, loggedIn: true });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+  res.render("create", { layout: "dashboard" });
+  // Post.findAll({
+  //   where: {
+  //     user_id: req.session.user_id,
+  //   },
+  //   attributes: ["id", "title", "post_content", "created_at"],
+  //   include: [
+  //     {
+  //       model: Comment,
+  //       attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
+  //       include: {
+  //         model: User,
+  //         attributes: ["username", "github"],
+  //       },
+  //     },
+  //     {
+  //       model: User,
+  //       attributes: ["username", "github"],
+  //     },
+  //   ],
+  // })
+  //   .then((dbPostData) => {
+  //     const post = dbPostData.map((post) => post.get({ plain: true }));
+  //     res.render("create-post", { post, loggedIn: true });
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //     res.status(500).json(err);
+  //   });
 });
 
 module.exports = router;
