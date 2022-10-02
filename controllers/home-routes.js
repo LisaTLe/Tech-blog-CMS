@@ -2,8 +2,19 @@ const router = require("express").Router();
 const sequelize = require("../config/connection");
 const { Post, Comment, User } = require("../models");
 
-//GET request for homepage
-router.get("/", (req, res) => {
+//GET all posts
+router.get("/", async (req, res) => {
+  try {
+    const postData = await Post.findAll({
+      include: [User],
+    });
+    const posts = postData.map((post) => post.get({ plain: true }));
+
+    res.render("all-posts", { posts });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
   // Post.findAll({
   //   attributes: ["id", "title", "post_content", "created_at"],
   //   include: [User],
@@ -18,32 +29,43 @@ router.get("/", (req, res) => {
   //     console.log(err);
   //     res.status(500).json(err);
   //   });
-  res.render("create");
+  // res.render("create");
 });
 
-router.get("/dashboard", (req, res) => {
-  res.render("homepage");
-});
-
-//GET request for all posts
-router.get("/", (req, res) => {
-  Post.findAll({
-    include: [User],
-  })
-    .then((dbPostData) => {
-      const post = dbPostData.map((post) => post.get({ plain: true }));
-      res.render("all posts", { post });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
+//get single post
+router.get("/post/:id", async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        User,
+        {
+          model: Comment,
+          include: [User],
+        },
+      ],
     });
+
+    if (postData) {
+      const post = postData.get({ plain: true });
+
+      res.render("single-post", { post });
+    } else {
+      res.status(404).end();
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
+
+// router.get("/dashboard", (req, res) => {
+//   res.render("homepage");
+// });
 
 //GET request for login
 router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect("/dashboard");
+    res.redirect("/");
     return;
   }
   res.render("login");
@@ -52,7 +74,7 @@ router.get("/login", (req, res) => {
 //GET request for signup
 router.get("/signup", (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect("/login");
+    res.redirect("/");
     return;
   }
   res.render("signup");

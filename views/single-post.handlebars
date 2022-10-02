@@ -1,4 +1,4 @@
-<header>
+{{!-- <header>
     <div class="post">
       <h2> Tech Blog Posts </h2>
     </div>
@@ -8,7 +8,7 @@
 
 {{!-- display comments --}}
 {{!-- {{#if loggedIn}} --}}
-<form class="comment-form">
+{{! <form class="comment-form">
 <div>
     <textarea class="ml-5" name="comment-body"></textarea>
 </div>
@@ -17,11 +17,13 @@
     <button class="button is-primary" type="submit">Comment</button>
 </div>
 
-</form>
+</form> }}
 {{!-- {{/if}} --}}
 
-{{>comments post.comments}}
+{{!-- {{>comments post.comments}} --}}
 
 {{!-- {{#if loggedIn}} --}}
-<script src="/js/comment.js"></script>
-{{!-- {{/if}} --}}
+{{!-- <script src="/js/comment.js"></script>
+{{/if}} --}}
+
+{{post.title}}
