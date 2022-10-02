@@ -6,11 +6,15 @@ const { Post, Comment, User } = require("../models");
 router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({
-      include: [User],
+      attributes: { exclude: ["user_id", "updatedAt"] },
+      include: [
+        { model: User, attributes: { exclude: ["password", "createdAt"] } },
+        { model: Comment },
+      ],
     });
     const posts = postData.map((post) => post.get({ plain: true }));
 
-    res.render("all-posts", { posts });
+    res.render("all-posts", { payload: { posts, sessions: req.session } });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -36,11 +40,22 @@ router.get("/", async (req, res) => {
 router.get("/post/:id", async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
+      attributes: {
+        exclude: ["user_id", "updatedAt"],
+      },
       include: [
-        User,
+        {
+          model: User,
+          attributes: {
+            exclude: ["password", "createdAt"],
+          },
+        },
         {
           model: Comment,
-          include: [User],
+          include: {
+            model: User,
+            attributes: { exclude: ["password"] },
+          },
         },
       ],
     });
@@ -48,7 +63,9 @@ router.get("/post/:id", async (req, res) => {
     if (postData) {
       const post = postData.get({ plain: true });
 
-      res.render("single-post", { post });
+      res.render("single-post", {
+        payload: { posts: [post], session: req.session },
+      });
     } else {
       res.status(404).end();
     }
