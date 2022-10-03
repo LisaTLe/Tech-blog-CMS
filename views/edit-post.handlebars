@@ -1,0 +1,27 @@
+<div id="post_id" data-post-id="{{payload.posts.id}}">
+  <h2>Edit Post: </h2>
+  <div>
+    <label for="title">Post Title: </label>
+    <input
+      name="post-title"
+      type="text"
+      value="{{payload.posts.title}}"
+      placeholder="title"
+      id="title-field"
+    />
+  </div>
+  <div>
+    <label for="post_content">Post Content: </label>
+    <input
+      name="post_content"
+      type="text"
+      value="{{payload.posts.content}}"
+      placeholder="post content"
+      id="content-field"
+    />
+  </div>
+  <button id="submit-btn">Save Changes</button>
+  <button id="delete-btn">Delete Post</button>
+</div>
+
+<script src="/js/edit.js"></script>

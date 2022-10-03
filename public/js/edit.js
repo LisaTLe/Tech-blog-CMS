@@ -5,10 +5,8 @@ const postId = document.getElementById("post_id").dataset.postId;
 const editFormHandler = async function (event) {
   event.preventDefault();
 
-  const title = document.querySelector("input[name='post-title]").ariaValueMax;
-  const body = document.querySelector(
-    "textarea[name='post-body']"
-  ).ariaValueMax;
+  const title = document.querySelector("input[name='post-title]").value;
+  const body = document.querySelector("textarea[name='post-body']").value;
 
   await fetch(`/api/post/${postId}`, {
     method: "PUT",

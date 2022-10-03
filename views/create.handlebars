@@ -1,20 +1,19 @@
-<section>
-<a href="/dashboard" class="is-pulled-right"> Back to dashboard </a>
-  <h3 class="title">Create New Post</h3>
-  <hr>
-  <form class="card-body" id="new-post-form">
-    <div>
-      <label for="post-title">Title:</label>
-      <input class="form-input" id="post-title" type="text" />
-    </div>
-
-    <div>
-      <label for="post-content">Post Content:</label>
-      <input class="textarea is-medium" id="post-content" type="text" />
-    </div>
-    <button class="button is-primary" type="submit">Create New Post</button>
-  </form>
+<div>
+  <h2>Create New Post: </h2>
+  <div>
+    <label for="title">Title: </label>
+    <input name="title" type="text" placeholder="title" id="title-field" />
+  </div>
+  <div>
+    <label for="post_content">Post Content: </label>
+    <input
+      name="post_content"
+      type="text"
+      placeholder="content"
+      id="content-field"
+    />
+  </div>
+  <button id="submit-btn">Create Post</button>
 </div>
-</section>
 
 <script src="/js/create.js"></script>
