@@ -4,6 +4,7 @@
   --nickel: #6e7271;
   --light-gray: #d8d4d5;
   --platinum: #e2e2e2;
+  --border-radius: 0.3rem;
 }
 
 * {
@@ -17,20 +18,21 @@ h4,
 h5,
 h6 {
   font-weight: 700;
-  margin: 2%;
+  margin: 0;
   color: var(--nickel);
   line-height: 1.25;
   align-content: center;
 }
 
-body,
-html {
+body {
   height: 100%;
   padding: 0;
   margin: 0;
   font-family: sans-serif;
   color: var(--nickel);
   background-color: var(--dark-green);
+  line-height: 1.5;
+  font-size: 16px;
 }
 
 title {
@@ -48,6 +50,10 @@ a {
 
 a:hover {
   color: var(--platinum);
+}
+
+p {
+  font-size: 1.2rem;
 }
 
 .app-title {
@@ -106,29 +112,42 @@ form-label {
 }
 
 header {
-  border-bottom: 1px solid var(--platinum);
+  /* border-bottom: 1px solid var(--platinum);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1%;
+  padding: 0 1%; */
+  margin-top: 50px;
 }
 
 main {
-  flex: 1;
-  padding: 2% 4%;
+  /* flex: 1;
+  padding: 2% 4%; */
+  margin: 20px auto;
+  width: 94%;
+}
+
+input {
+  width: 100%;
+  border: 1px solid white;
+  background: #fff;
+  margin: 0 0 5px;
+  padding: 10px;
 }
 
 .btn {
-  background: none;
+  display: block;
   border: none;
-  padding: 0;
+  padding: 6px 5px;
+  width: 100%;
   cursor: pointer;
   text-decoration: none;
   color: var(--nickel);
-  font-size: 100%;
+  font-size: 1.3rem;
   font-weight: bold;
   transition: color 0.1s;
-  margin-left: 16px;
+  margin: 5px 0;
+  outline: none;
 }
 
 .btn:hover {
@@ -143,16 +162,11 @@ main {
 .navbar {
   width: 100%;
   position: fixed;
-  height: 5px;
   background-color: var(--light-green);
-  color: var(--platinum);
-  opacity: 20%;
-  justify-content: right;
 }
 
 .nav-item {
-  margin: 0 45px;
-  color: var(--platinum);
+  margin: 0 40px;
 }
 
 .nav-item a {

@@ -1,29 +1,20 @@
-{{!-- <header>
-    <div class="post">
-      <h2> Tech Blog Posts </h2>
-    </div>
-  </header>
+{{>post-box this}}
 
-{{>post-info post}}
+<div id="post_id" data-post-id="{{payload.posts.[0].id}}">
+  {{#if payload.session.loggedin}}
+      <p>Leave a Comment</p>
+      <textarea name="comment-body" type="text" placeholder="Type Comment Here..." id="content-field"></textarea>
+      <button id="comment-btn">Post</button>
+  {{else}}
+      <p>Please create an account or login to leave a comment</p>
+  {{/if}}
 
-{{!-- display comments --}}
-{{!-- {{#if loggedIn}} --}}
-{{! <form class="comment-form">
-<div>
-    <textarea class="ml-5" name="comment-body"></textarea>
+  <div>
+      <p>Comments : </p>
+      <div class="comment-container">
+          {{>comment-box this}}
+      </div>
+  </div>
 </div>
 
-<div>
-    <button class="button is-primary" type="submit">Comment</button>
-</div>
-
-</form> }}
-{{!-- {{/if}} --}}
-
-{{!-- {{>comments post.comments}} --}}
-
-{{!-- {{#if loggedIn}} --}}
-{{!-- <script src="/js/comment.js"></script>
-{{/if}} --}}
-
-{{post.title}}
+<script src="/js/comment.js"></script>
