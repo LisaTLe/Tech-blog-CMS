@@ -4,16 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {{! <title>Tech Blog</title> }}
-    <link
+    <title>The Tech Blog</title>
+    {{! <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"
-    />
+    /> }}
     <link rel="stylesheet" href="/stylesheet/style.css" />
-    <title> A Tech Blog</title>
+    {{! <title> A Tech Blog</title> }}
   </head>
 
-  <body class="flex-column">
+  <body class="flex-column min-100-vh">
     {{! <h3 class="has-text-weight-bold px-4 py-4">A Tech Blog</h3> }}
     <nav class="navbar">
       {{!-- {{#if loggedIn}} --}}
@@ -21,28 +21,31 @@
         <li class="li-inline nav-item"><a href="/"> Home</a></li>
         <li class="li-inline nav-item"><a href="/dashboard">
             Dashboard</a></li>
-        <li class="li-inline nav-item"><a href="/signup"> Sign Up</a></li>
-        <li class="li-inline nav-item"><a href="/login"> Login</a></li>
-        <li class="li-inline nav-item"><a href="#" id="logout-link">
-            Logout</a></li>
+        {{#if payload.session.loggedIn}}
+          <li class="li-inline nav-item"><a href="#" id="logout-link">
+              Logout</a></li>
+        {{else}}
+          <li class="li-inline nav-item"><a href="/signup"> Sign Up</a></li>
+          <li class="li-inline nav-item"><a href="/login"> Login</a></li>
+        {{/if}}
       </ul>
       {{!-- {{/if}} --}}
     </nav>
 
-    {{#if loggedIn}}
-      <a href="/views/create.handlebars"></a>
-    {{else}}
-      <a href="/views/login.handlebars"></a>
-    {{/if}}
+    <header class="hero">
+      <h1 class="app-title"><a href="/">The Tech Blog</a></h1>
+    </header>
 
-    <main>
+    <main class="col-auto">
       {{{body}}}
     </main>
 
     <footer class="flex-row justify-center">
-      &copy; Tech Blog
+      &copy; The Tech Blog
     </footer>
 
   </body>
 
 </html>
+
+<script src="/js/logout.js"></script>
