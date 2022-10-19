@@ -75,6 +75,7 @@ router.post("/", (req, res) => {
       res.status(500).json(err);
     });
 });
+
 //POST request to login
 router.post("/login", (req, res) => {
   User.findOne({
@@ -84,6 +85,7 @@ router.post("/login", (req, res) => {
   })
     .then((dbUserData) => {
       if (!dbUserData) {
+        // json message does not appear
         res.status(400).json({ message: "No user with that username!" });
         return;
       }

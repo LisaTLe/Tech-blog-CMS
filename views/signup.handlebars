@@ -1,46 +1,30 @@
 <div>
-  <h2>Create a Profile Now: </h2>
-  <div>
-    <label for="username">Type in a username: </label>
-    <input
-      name="username"
-      type="text"
-      value=""
-      placeholder="username"
-      id="username-field"
-    />
-  </div>
-  {{!-- <div>
-    <label for="email">Type your email: </label>
-    <input
-      name="email"
-      type="text"
-      value=""
-      placeholder="email"
-      id="email-field"
-    />
-  </div> --}}
-  <div>
-    <label for="password">Type in a password: </label>
-    <input
-      name="password"
-      type="text"
-      value=""
-      placeholder="password"
-      id="password-field"
-    />
-  </div>
-  {{!-- <div>
-    <label for="github">Type in your GitHub handle: </label>
-    <input
-      name="github"
-      type="text"
-      value=""
-      placeholder="github"
-      id="github-field"
-    />
-  </div> --}}
-  <button type="submit" signup-btn">Sign Up Now</button>
+  <form id="signup-form">
+    <h2>Create a Profile Now: </h2>
+    <div>
+      <label for="username">Type in a username: </label>
+      <input
+        name="username"
+        type="text"
+        value=""
+        placeholder="username"
+        id="username-field"
+      />
+    </div>
+
+    <div>
+      <label for="password">Type in a password: </label>
+      <input
+        name="password"
+        type="text"
+        value=""
+        placeholder="password"
+        id="password-field"
+      />
+    </div>
+
+    <button type="submit" id="signup-btn">Sign Up Now </button>
+  </form>
 </div>
 
 <script src="/js/signup.js"></script>
