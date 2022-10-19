@@ -2,13 +2,13 @@ const router = require("express").Router();
 const sequelize = require("../config/connection");
 const { Post, Comment, User } = require("../models");
 
-router.get("/", (req, res) => {
-  res.render("homepage");
-});
+// router.get("/", (req, res) => {
+//   res.render("homepage");
+// });
 
-router.get("/profile", (req, res) => {
-  res.render("dashboard");
-});
+// router.get("/profile", (req, res) => {
+//   res.render("dashboard");
+// });
 
 //GET all posts
 router.get("/", (req, res) => {
@@ -29,13 +29,17 @@ router.get("/", (req, res) => {
       },
     ],
   })
-
     .then((dbPostData) => {
-      const posts = dbPostData.map((post) => post.get({ plain: true }));
+      const posts = dbPostData.map((post) =>
+        post.get({
+          plain: true,
+        })
+      );
 
-      console.log(posts);
-
-      res.render("homepage", { posts, loggedIn: req.session.loggedIn });
+      res.render("homepage", {
+        posts,
+        loggedIn: req.session.loggedIn,
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -49,7 +53,7 @@ router.get("/post/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "content", "title", "created_at"],
+    attributes: ["id", "title", "content", "created_at"],
     include: [
       {
         model: Comment,
@@ -67,12 +71,20 @@ router.get("/post/:id", (req, res) => {
   })
     .then((dbPostData) => {
       if (!dbPostData) {
-        res.status(404).json({ message: "No post found with this id" });
+        res.status(404).json({
+          message: "No post found with this id",
+        });
         return;
       }
-      const post = dbPostData.get({ plain: true });
-      console.log(post);
-      res.render("single-post", { post, loggedIn: req.session.loggedIn });
+
+      const post = dbPostData.get({
+        plain: true,
+      });
+
+      res.render("single-post", {
+        post,
+        loggedIn: req.session.loggedIn,
+      });
     })
     .catch((err) => {
       console.log(err);

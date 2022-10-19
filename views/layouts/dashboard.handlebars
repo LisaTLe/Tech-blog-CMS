@@ -1,34 +1,14 @@
-<html lang="en">
+{{#if posts.length}}
+<section>
+  <h2>Post History</h2>
+    {{#each posts as |post|}}
+      {{> dashboard-postinfo post}}
+    {{/each}}
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Tech Blog</title>
-    <link rel="stylesheet" href="/public/stylesheet/style.css" />
-  </head>
+</section>
+{{/if}}
 
-  <body class="flex=column min-100 vh">
-    <nav class="navbar">
-      <ul class="flex-row">
-        <li class="li-inline nav-item"><a href="/">Home</a></li>
-        <li class="li-inline nav-item"><a href="/dashboard">Dashboard</a></li>
-        <li class="li-inline nav-item"><a
-            href="#"
-            id="logout-link"
-          >Logout</a></li>
-      </ul>
-    </nav>
+<button type="submit" class="btn"><a class="link" href="/dashboard/new">Add New Post</a></button>
 
-    <header class="hero">
-      <h1 class="app-title"><a href="/dashboard">Your Dashboard: </a></h1>
-    </header>
-
-    <main class="col-auto">
-      {{{body}}}
-    </main>
-
-  </body>
-</html>
 
 <script src="/js/logout.js"></script>

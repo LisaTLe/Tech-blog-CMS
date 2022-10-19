@@ -36,25 +36,27 @@ router.get("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "title", "post_content", "created_at"],
+    attributes: ["id", "content", "title", "created_at"],
     include: [
       {
         model: User,
-        attributes: ["username", "github"],
+        attributes: ["username"],
       },
       {
         model: Comment,
         attributes: ["id", "comment_text", "post_id", "user_id", "created_at"],
         include: {
           model: User,
-          attributes: ["username", "github"],
+          attributes: ["username"],
         },
       },
     ],
   })
     .then((dbPostData) => {
       if (!dbPostData) {
-        res.status(404).json({ message: "Post cannot be found with this id" });
+        res.status(404).json({
+          message: "No post found with this id",
+        });
         return;
       }
       res.json(dbPostData);
@@ -67,25 +69,25 @@ router.get("/:id", (req, res) => {
 
 //POST request for post
 router.post("/", withAuth, async (req, res) => {
-  const body = req.body;
+  // const body = req.body;
 
-  try {
-    const newPost = await Post.create({ ...body, user_id: req.session.userId });
-    res.json(newPost);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-  // Post.create({
-  //   title: req.body.title,
-  //   post_content: req.body.post_content,
-  //   user_id: req.session.user_id,
-  // })
-  //   .then((dbPostData) => res.json(dbPostData))
-  //   .catch((err) => {
-  //     console.log(err);
-  //     res.status(500).json(err);
-  //   });
+  // try {
+  //   const newPost = await Post.create({ ...body, user_id: req.session.userId });
+  //   res.json(newPost);
+  // } catch (err) {
+  //   console.log(err);
+  //   res.status(500).json(err);
+  // }
+  Post.create({
+    title: req.body.title,
+    post_content: req.body.post_content,
+    user_id: req.session.user_id,
+  })
+    .then((dbPostData) => res.json(dbPostData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 //PUT request to update post
