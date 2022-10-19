@@ -1,20 +1,21 @@
-{{>post-box this}}
 
-<div id="post_id" data-post-id="{{payload.posts.[0].id}}">
-  {{#if payload.session.loggedin}}
-      <p>Leave a Comment</p>
-      <textarea name="comment-body" type="text" placeholder="Type Comment Here..." id="content-field"></textarea>
-      <button id="comment-btn">Post</button>
-  {{else}}
-      <p>Please create an account or login to leave a comment</p>
-  {{/if}}
+{{> post-info post}}
 
-  <div>
-      <p>Comments : </p>
-      <div class="comment-container">
-          {{>comment-box this}}
-      </div>
-  </div>
+{{#if loggedIn}}
+<div class="card">
+    <h3 class="card-header"></h3>
+    <form class="card-body comment-form" id="comment-form">
+
+        <label class="form-label">Comment</label>
+        <input id="comment" name="comment-body" class="form-input" />
+
+        <button type="submit" class="btn">Submit</button>
+    </form>
 </div>
+{{/if}}
 
+{{> comment post.comments}}
+
+{{#if loggedIn}}
 <script src="/js/comment.js"></script>
+{{/if}}
