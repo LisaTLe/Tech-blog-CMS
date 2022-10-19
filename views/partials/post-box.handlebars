@@ -1,21 +1,20 @@
-
-
-{{#each payload.posts}}
-   
-
-    <div class="post-box">
-        <a href="/post/{{id}}">
-            <div class="heading-box">
-                <p>{{title}}</p>
-                <p>Created By: {{user.username}} | {{formatDate createdAt}}</p>
-            </div>
-        </a>
-        <div class="content-box">
-            <p>{{content}}<p>
-        </div>
-        <p>Comments: {{comments.length}}</p>
-        {{#if (isLocalUser user.id)}}
-            <a class="edit-btn" href="/dashboard/edit/{{id}}">Edit</a>
-        {{/if}}
+<article class="post">
+  <div class="whole-post">
+    <div class="info-section">
+      <div class="post-name">
+        <a href="/post/{{id}}" class="links">{{title}}</a>
+      </div>
+      <div class="created-by">
+        <p id="comment-subtitle">
+          Posted by
+          <b>{{user.username}} </b>
+          on
+          <b>{{formatDate created_at}}</b>
+        </p>
+      </div>
     </div>
-{{/each}}
+    <div class="content-section">
+      <p>{{content}}</p>
+    </div>
+  </div>
+</article>

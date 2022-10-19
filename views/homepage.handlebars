@@ -1,4 +1,10 @@
 <div>
   <p>Your Posts: </p>
-  {{>post-box this}}
+ <ul class="post-list">
+    {{#each posts as |post|}}
+    <li>
+        {{> post-info post }}
+    </li>
+    {{/each}}
+</ul>
 </div>
