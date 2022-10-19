@@ -1,17 +1,14 @@
-{{#if (notEmpty payload.posts.0.comments)}}
-  {{#each payload.posts.0.comments as |comment|}}
-    <div class="comment-box">
-      <p>Left By
-        <span
-          style="color: #384d48; font-weight: 900; text-decoration: underline;"
-        >{{comment.user.username}}</span>
+<div class="comments">
+  {{#each this}}
+    <section class="comment">
+      <div class="meta">
+        {{user.username}}
         on
-        <span style="color: #6e7271">{{formatDate
-            comment.createdAt
-          }}:</span></p>
-      <p style="color: black">{{comment.content}}</p>
-    </div>
+        {{created_at}}
+      </div>
+      <div class="text">
+        {{comment_text}}
+      </div>
+    </section>
   {{/each}}
-{{else}}
-  <p>No comments</p>
-{{/if}}
+</div>
